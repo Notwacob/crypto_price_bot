@@ -6,6 +6,8 @@ const { JSDOM } = jsdom;
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
+const fromNumber = process.env.FROM;
+const toNumber = process.env.TO;
 const api = new twilio(accountSid, authToken)
 
 async function fetchHTML(url) {
@@ -51,8 +53,8 @@ function sendMessage(cryptoName, price) {
     api.messages
         .create({
             body: msg,
-            from: '+18446495852',
-            to: '+17574341748'
+            from: fromNumber,
+            to: toNumber
         })
         .then(message => console.log(message.sid));
 }
